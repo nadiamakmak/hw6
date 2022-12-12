@@ -94,4 +94,17 @@ bool boggleHelper(const std::set<std::string>& dict, const std::set<std::string>
 {
 //add your solution here!
 
+	if(r < board.size() && c < board.size()){ //while in bounds
+		//if the prefix is in the list of prefixes and we can continue adding letters
+		if(prefix.find(word+board[r][c]) != prefix.end() && boggleHelper(dict, prefix, board, word+board[r][c], result, r + dr, c + dc, dr, dc) == true){ 
+			return true;
+		}
+
+		if(dict.find(word+board[r][c])!=dict.end()){ //if we get here, that means that our prefix is in the dict
+			result.insert(word+board[r][c]); //add it to the results
+			return true;
+		}
+	}
+	return false;
+
 }
